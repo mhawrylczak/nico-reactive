@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+
+
+
+dependencies {
+    compile "org.springframework.reactive:spring-reactive:0.1.0.BUILD-SNAPSHOT"
+    compile "org.reactivestreams:reactive-streams:1.0.0"
+    compile "io.projectreactor:reactor-core:2.1.0.BUILD-SNAPSHOT"
+
+    compile "com.fasterxml.jackson.core:jackson-databind:2.6.1"
+
+    compile "io.reactivex:rxnetty:0.5.0-SNAPSHOT"
+
+    compile "io.projectreactor:reactor-net:2.1.0.BUILD-SNAPSHOT"
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.optimizationOptions.indy = true
+}

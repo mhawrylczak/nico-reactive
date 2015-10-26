@@ -1,0 +1,10 @@
+{
+    "moduleId": "simpleWeb1Module",
+    "compilerPluginIds": ["bytecode"],
+    "moduleDependencies": [
+
+    ],
+    "archiveMetadata": {
+
+    }
+}
