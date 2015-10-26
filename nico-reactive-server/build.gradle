@@ -24,7 +24,6 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 
-
 dependencies {
     compile project(":nico-module-core")
     compile "org.springframework.reactive:spring-reactive:0.1.0.BUILD-SNAPSHOT"

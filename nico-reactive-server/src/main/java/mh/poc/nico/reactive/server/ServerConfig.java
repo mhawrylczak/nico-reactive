@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.reactive.web.http.HttpHandler;
 import org.springframework.reactive.web.http.HttpServer;
@@ -28,13 +29,14 @@ import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
+@ComponentScan("mh.poc.nico.reactive.server")
 public class ServerConfig {
 
-    @Value("${baseArchiveDir}")
-    private String archiveDir;
+//    @Value("${baseArchiveDir:classpath}")
+    private String archiveDir="classpath";
 
-    @Value("${server.port}")
-    private int serverPort;
+//    @Value("${server.port:8080}")
+    private int serverPort=8080;
 
     private File tmpRepoDir;
 
@@ -42,7 +44,7 @@ public class ServerConfig {
     public static final String GROOVY2_COMPILER_PLUGIN_CLASS = "com.netflix.nicobar.groovy2.plugin.Groovy2CompilerPlugin";
 
     public static final String BYTECODE_PLUGIN_ID = "bytecode";
-    public static final String BYTECODE_COMPILER_PLUGIN_CLASS = "com.netflix.nicobar.core.BytecodeLoadingPlugin";
+    public static final String BYTECODE_COMPILER_PLUGIN_CLASS = "com.netflix.nicobar.core.plugin.BytecodeLoadingPlugin";
 
     @Bean
     public ScriptModuleLoader scriptModuleLoader(RootHandler rootHandlerListener) throws Exception {
