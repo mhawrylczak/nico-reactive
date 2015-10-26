@@ -1,4 +1,5 @@
 subprojects {
+  group = 'mh.poc.nico.reactive'
     
   repositories {
     mavenCentral()

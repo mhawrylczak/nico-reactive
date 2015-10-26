@@ -41,6 +41,10 @@ dependencies {
     compile('com.netflix.Nicobar:nicobar-core:0.2.7-SNAPSHOT')
     compile('com.netflix.Nicobar:nicobar-groovy2:0.2.7-SNAPSHOT')
 
+
+    //for tests
+    runtime('mh.poc.nico.reactive:sample-web1-module:1.0')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
