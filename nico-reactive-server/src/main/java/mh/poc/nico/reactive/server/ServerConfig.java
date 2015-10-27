@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.reactive.web.http.HttpHandler;
 import org.springframework.reactive.web.http.HttpServer;
 import org.springframework.reactive.web.http.reactor.ReactorHttpServer;
+import org.springframework.reactive.web.http.undertow.UndertowHttpServer;
 
 import javax.annotation.PreDestroy;
 import java.io.File;
@@ -97,7 +98,8 @@ public class ServerConfig {
 
     @Bean
     public HttpServer getServer(HttpHandler rootHandler){
-        HttpServer server = new ReactorHttpServer();
+        HttpServer server = new UndertowHttpServer();
+//        HttpServer server = new ReactorHttpServer();
         server.setPort(serverPort);
         server.setHandler(rootHandler);
         return server;
