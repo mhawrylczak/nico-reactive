@@ -17,6 +17,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.reactive.web.http.HttpHandler;
 import org.springframework.reactive.web.http.HttpServer;
 import org.springframework.reactive.web.http.reactor.ReactorHttpServer;
@@ -31,13 +33,17 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @ComponentScan("mh.poc.nico.reactive.server")
+@PropertySource("classpath:application.properties")
 public class ServerConfig {
 
-//    @Value("${baseArchiveDir:classpath}")
-    private String archiveDir="classpath";
+    @Value("${repo.dir}")
+    private String archiveDir;
 
-//    @Value("${server.port:8080}")
-    private int serverPort=8080;
+    @Value("${server.port}")
+    private int serverPort;
+
+    @Value("${server.class}")
+    private Class<HttpServer> serverClass;
 
     private File tmpRepoDir;
 
@@ -97,12 +103,16 @@ public class ServerConfig {
 
 
     @Bean
-    public HttpServer getServer(HttpHandler rootHandler){
-        HttpServer server = new UndertowHttpServer();
-//        HttpServer server = new ReactorHttpServer();
+    public HttpServer getServer(HttpHandler rootHandler) throws IllegalAccessException, InstantiationException {
+        HttpServer server = serverClass.newInstance();
         server.setPort(serverPort);
         server.setHandler(rootHandler);
         return server;
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 
     @PreDestroy
