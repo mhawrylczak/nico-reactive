@@ -1,4 +1,4 @@
-package mh.poc.module.web1;
+package mh.poc.module.http.handler.module1;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,15 +15,15 @@ import java.net.URI;
 
 import static org.junit.Assert.*;
 
-public class ModuleControllerIntegrationTest {
+public class HttpSimpleHandlerIntegrationTest {
 
     private int port;
     private HttpServer server;
-    private HttpModule module;
+    private HttpHandlerModule module;
 
     @Before
     public void setup() throws Exception {
-        this.module = new HttpModule();
+        this.module = new HttpHandlerModule();
         this.port = SocketUtils.findAvailableTcpPort();
         this.server = new UndertowHttpServer();
         this.server.setPort(this.port);
@@ -38,13 +38,16 @@ public class ModuleControllerIntegrationTest {
     }
 
     @Test
-    public void testHello(){
+    public void testHandler(){
         RestTemplate restTemplate = new RestTemplate();
 
-        URI url = URI.create("http://localhost:" + port + "/hello?name=Marek");
+        URI url = URI.create("http://localhost:" + port + "/simple");
         RequestEntity<Void> request = RequestEntity.get(url).build();
-        ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+        ResponseEntity<SamplePojo> response = restTemplate.exchange(request, SamplePojo.class);
 
-        assertEquals("Hello Marek!", response.getBody());
+        assertEquals("name", response.getBody().getName());
+        assertEquals(13, response.getBody().getAnInt());
+        assertEquals("description", response.getBody().getDescription());
     }
+
 }

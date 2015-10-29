@@ -1,5 +1,5 @@
 {
-    "moduleId": "sample-web1-module",
+    "moduleId": "sample-http-handler-module",
     "compilerPluginIds": ["bytecode"],
     "moduleDependencies": [
 

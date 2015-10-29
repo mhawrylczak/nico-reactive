@@ -3,4 +3,5 @@ rootProject.name = 'nico-reactive'
 include "nico-module-core"
 include "sample-service1-module"
 include "sample-web1-module"
+include "sample-http-handler-module"
 include "nico-reactive-server"
