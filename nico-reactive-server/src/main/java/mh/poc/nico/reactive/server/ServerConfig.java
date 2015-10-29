@@ -77,6 +77,7 @@ public class ServerConfig {
         if ("classpath".equals(archiveDir)){
             tmpRepoDir = Files.createTempDir();
             baseArchiveDir = tmpRepoDir.toPath();
+            System.out.println("Repo location "+ baseArchiveDir);
         } else {
             baseArchiveDir = Paths.get(archiveDir);
         }

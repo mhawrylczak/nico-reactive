@@ -43,6 +43,7 @@ dependencies {
 
     //for tests
     runtime('mh.poc.nico.reactive:sample-web1-module:1.0')
+    runtime('mh.poc.nico.reactive:sample-http-handler-module:1.0')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

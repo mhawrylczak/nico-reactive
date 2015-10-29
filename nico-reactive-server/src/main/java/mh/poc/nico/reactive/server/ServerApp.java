@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 public class ServerApp {
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        System.setProperty("jboss.modules.system.pkgs", "org.springframework,mh.poc.nico.reactive");
+        System.setProperty("jboss.modules.system.pkgs", "org.springframework,mh.poc.nico.reactive,org.reactivestreams,reactor");
 
         ApplicationContext context = new AnnotationConfigApplicationContext(ServerConfig.class);
         HttpServer server = context.getBean(HttpServer.class);
