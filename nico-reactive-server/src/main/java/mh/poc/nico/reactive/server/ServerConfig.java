@@ -7,6 +7,7 @@ import com.netflix.nicobar.core.execution.HystrixScriptModuleExecutor;
 import com.netflix.nicobar.core.module.ScriptModuleLoader;
 import com.netflix.nicobar.core.persistence.ArchiveRepository;
 import com.netflix.nicobar.core.persistence.ArchiveRepositoryPoller;
+import com.netflix.nicobar.core.persistence.JarArchiveRepository;
 import com.netflix.nicobar.core.persistence.PathArchiveRepository;
 import com.netflix.nicobar.core.plugin.ScriptCompilerPluginSpec;
 import com.netflix.nicobar.core.utils.ClassPathUtils;
@@ -82,7 +83,7 @@ public class ServerConfig {
             baseArchiveDir = Paths.get(archiveDir);
         }
 
-        ArchiveRepository repository = new PathArchiveRepository.Builder(baseArchiveDir).build();
+        ArchiveRepository repository = new JarArchiveRepository.Builder(baseArchiveDir).build();
         if (tmpRepoDir != null) {
             initRepo(scanner, repository);
         }
