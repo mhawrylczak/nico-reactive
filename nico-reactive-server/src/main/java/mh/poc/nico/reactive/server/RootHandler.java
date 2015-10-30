@@ -115,6 +115,11 @@ public class RootHandler implements ScriptModuleListener, HttpHandler {
         }
 
         @Override
+        public Publisher<Void> writeHeaders() {
+            return actual.writeHeaders();
+        }
+
+        @Override
         public Publisher<Void> writeWith(Publisher<ByteBuffer> publisher) {
             return actual.writeWith(publisher);
         }
