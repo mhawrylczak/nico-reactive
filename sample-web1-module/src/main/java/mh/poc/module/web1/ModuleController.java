@@ -11,7 +11,7 @@ import reactor.rx.Streams;
 @Controller
 public class ModuleController {
 
-    @RequestMapping("/hello")
+    @RequestMapping(value = "/hello", produces = "text/plain")
     @ResponseBody
     public Publisher<String> handle(@RequestParam String name) {
         return Streams.just("Hello ", name, "!");
